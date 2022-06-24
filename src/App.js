@@ -1,18 +1,21 @@
 import './App.css';
 
-import React from 'react'
+import React, { useState } from 'react';
 
 import {FILM_CARDS} from './mocs'
 import {Films} from './film'
 import {Filters} from './filters'
 
 function App() {
+  const [firstFilmNumber, setFirstFilmNumber] = useState(0);
   return (
  <>
 <Header/>
 <div className = "main">
-<div><Filters/></div>
-<div className = "films"><Films list = {FILM_CARDS}/></div>
+<div><Filters firstFilmNumber = {firstFilmNumber}
+ setFirstFilmNumber = {setFirstFilmNumber}/></div>
+<div className = "films"><Films list = {FILM_CARDS} 
+firstFilmNumber = {firstFilmNumber}/></div>
 </div>
  </>
   );

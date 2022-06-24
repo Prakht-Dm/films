@@ -1,25 +1,30 @@
 import React from 'react'
 import {FILM_CARDS} from './mocs'
+import {AMOUNT_OF_CARDS} from './consts'
 
-export function Films(props){
-    const full_list = props.list;
+export function Films({list, firstFilmNumber}){
+    const firstFilmNumbers = firstFilmNumber    
+    const full_list = list;
     const film_cards = full_list.map((item, index)=>{
-       return <FilmCard key = {item} item = {FILM_CARDS[index]}/>
+    if (index >= firstFilmNumbers && index <= firstFilmNumbers+AMOUNT_OF_CARDS-1){
+       return <FilmCard key = {index} item = {FILM_CARDS[index]}/>
+    }
+    return false
      }
      ) 
      return film_cards;
    }
    
-   function FilmCard(props){
-     const imagePath = props.item.poster_path || props.item.backdrop_path;
+   function FilmCard({item}){
+     const imagePath = item.poster_path || item.backdrop_path;
      const src = `https://image.tmdb.org/t/p/w500/${imagePath}`
    return <div className = "film_card">
    <img alt = "Poster" src = {src}/>
    <div>
      <div>
      <button>✩</button><button>☐\☑\☒</button>
-     <p>Рейтинг: {props.item.vote_average}</p>
-     <p>{props.item.title}</p> 
+     <p>Рейтинг: {item.vote_average}</p>
+     <p>{item.title}</p> 
      </div>
      <div>   
        Подробнее</div>

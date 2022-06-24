@@ -25,3 +25,5 @@ export const SORT_TYPES = [
       "name": 1990
     }, 
   ]
+
+  export const AMOUNT_OF_CARDS = 10;
