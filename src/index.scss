@@ -1,0 +1,153 @@
+* { margin: 0; padding: 0; text-decoration: none; font-size: 1em; outline: none; }
+code, kbd, samp, pre, tt, var, textarea, input, select, isindex, listing, xmp, plaintext { 
+font: inherit; font-size: 1em; white-space: normal; }
+dfn, i, cite, var, address, em { font-style: normal; }
+th, b, strong, h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+a, img, a img, iframe, form, fieldset, abbr, acronym, object, applet, table {
+border: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th, td, center { text-align: left; vertical-align: top; }
+body { line-height: 1; background: white; color: black; }
+q { quotes: "" ""; }
+ul, ol, dir, menu { list-style: none; }
+sub, sup { vertical-align: baseline; }
+a { color: inherit; }
+hr { display: none; } /* we don't need a visual hr in layout */
+/* disables some nasty font attributes in standard browsers */
+font { color: inherit !important; font: inherit !important; color: inherit !important; } 
+marquee { overflow: inherit !important; -moz-binding: none; }
+blink { text-decoration: none; }
+nobr { white-space: normal; }
+
+$textColor: rgb(43,	54,	59);
+.main{
+ 
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    .films{
+        width: 1000px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+  .filters{
+      box-shadow: 2px 2px 5px rgb(129, 125, 125);
+      width: 240px;
+   
+      border: 1px solid rgba(100, 100, 100, 0.24);
+      border-radius: 5px;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+    //   justify-content: ;
+    padding: 20px;
+    color: $textColor;
+     h1{
+         font-size: 1.8em;
+         font-style: bold;
+         margin: 8px;
+     }
+     button{
+         background-color: $textColor;
+         padding: 3px;
+         color: white;
+         border-radius: 5px;
+         height: 2em;
+         margin: 8px;
+     }
+     select{
+        margin: 8px;
+         height: 2em;
+     }
+     form{
+         padding: 3px;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        label{
+            padding: 2px;
+        }
+     }
+     .navigation{
+        button{
+            width: 100px;
+            background-color: rgb(68,	110,	250	);
+            border: none;
+        }
+        p{
+            text-align: center;
+        }
+     }
+  }  
+
+
+header {
+    background-color: rgb(68,	110,	250	);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+
+    button{
+        background-color: rgb(38,	154,	54	);
+        border: none;
+        border-radius: 2px;
+        color: white;
+        padding: 2px 5px;
+    }
+
+}
+
+.film_card{
+    margin: 20px;
+    margin-bottom: 0;
+    box-shadow: 2px 2px 5px rgb(129, 125, 125);
+    border: 1px solid rgba(100, 100, 100, 0.24);
+    width: 450px;
+    height: 230px;
+    display: flex;
+   button{
+       width: 20px;
+       border: none;
+       background-color: white;
+       position: relative;  
+       right: -200px;
+   } 
+   button:last-of-type{
+    width: 20px;
+    border: none;
+    background-color: white;
+    position: relative;  
+    right: -230px;
+    top: -28px    
+   }
+   p{
+    position: relative;
+   
+   top: -50px; 
+   }
+    img{
+        height: 100%;
+    }
+    div{
+        font-size: 1.2em;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p:first-of-type{
+            margin-bottom: 10px;
+            color:rgb(129, 125, 125)
+        }
+        div:last-of-type{
+            
+            border-top: 1px solid rgba(100, 100, 100, 0.24);
+        }
+            
+        
+    }
+    
+}

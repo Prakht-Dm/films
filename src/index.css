@@ -1,13 +1,252 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  text-decoration: none;
+  font-size: 1em;
+  outline: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+code, kbd, samp, pre, tt, var, textarea, input, select, isindex, listing, xmp, plaintext {
+  font: inherit;
+  font-size: 1em;
+  white-space: normal;
 }
+
+dfn, i, cite, var, address, em {
+  font-style: normal;
+}
+
+th, b, strong, h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+a, img, a img, iframe, form, fieldset, abbr, acronym, object, applet, table {
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td, center {
+  text-align: left;
+  vertical-align: top;
+}
+
+body {
+  line-height: 1;
+  background: white;
+  color: black;
+}
+
+q {
+  quotes: "" "";
+}
+
+ul, ol, dir, menu {
+  list-style: none;
+}
+
+sub, sup {
+  vertical-align: baseline;
+}
+
+a {
+  color: inherit;
+}
+
+hr {
+  display: none;
+}
+
+/* we don't need a visual hr in layout */
+/* disables some nasty font attributes in standard browsers */
+font {
+  color: inherit !important;
+  font: inherit !important;
+  color: inherit !important;
+}
+
+marquee {
+  overflow: inherit !important;
+  -moz-binding: none;
+}
+
+blink {
+  text-decoration: none;
+}
+
+nobr {
+  white-space: normal;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main .films {
+  width: 1000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.filters {
+  -webkit-box-shadow: 2px 2px 5px #817d7d;
+          box-shadow: 2px 2px 5px #817d7d;
+  width: 240px;
+  border: 1px solid rgba(100, 100, 100, 0.24);
+  border-radius: 5px;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  color: #2b363b;
+}
+
+.filters h1 {
+  font-size: 1.8em;
+  font-style: bold;
+  margin: 8px;
+}
+
+.filters button {
+  background-color: #2b363b;
+  padding: 3px;
+  color: white;
+  border-radius: 5px;
+  height: 2em;
+  margin: 8px;
+}
+
+.filters select {
+  margin: 8px;
+  height: 2em;
+}
+
+.filters form {
+  padding: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.filters form label {
+  padding: 2px;
+}
+
+.filters .navigation button {
+  width: 100px;
+  background-color: #446efa;
+  border: none;
+}
+
+.filters .navigation p {
+  text-align: center;
+}
+
+header {
+  background-color: #446efa;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header button {
+  background-color: #269a36;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  padding: 2px 5px;
+}
+
+.film_card {
+  margin: 20px;
+  margin-bottom: 0;
+  -webkit-box-shadow: 2px 2px 5px #817d7d;
+          box-shadow: 2px 2px 5px #817d7d;
+  border: 1px solid rgba(100, 100, 100, 0.24);
+  width: 450px;
+  height: 230px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.film_card button {
+  width: 20px;
+  border: none;
+  background-color: white;
+  position: relative;
+  right: -200px;
+}
+
+.film_card button:last-of-type {
+  width: 20px;
+  border: none;
+  background-color: white;
+  position: relative;
+  right: -230px;
+  top: -28px;
+}
+
+.film_card p {
+  position: relative;
+  top: -50px;
+}
+
+.film_card img {
+  height: 100%;
+}
+
+.film_card div {
+  font-size: 1.2em;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.film_card div p:first-of-type {
+  margin-bottom: 10px;
+  color: #817d7d;
+}
+
+.film_card div div:last-of-type {
+  border-top: 1px solid rgba(100, 100, 100, 0.24);
+}
+/*# sourceMappingURL=index.css.map */
