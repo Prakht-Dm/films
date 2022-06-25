@@ -1,28 +1,42 @@
 export const SORT_TYPES = [
     {
       "id": 1,
-      "name": "Популярные по возрастанию"
+      "name": "Популярные по убыванию"
     },
     {
       "id": 2,
-      "name": "Популярные по убыванию"
+      "name": "Популярные по возрастанию"
     },
+    {
+      "id": 3,
+      "name": "Рейтинг по убыванию"
+    },
+    {
+      "id": 4,
+      "name": "Рейтинг по возрастанию"
+    }
   ]
-  
-  // function createYearsList(years){
-  //   const list = [];
-  //   for (let i=0; i<years; i++){
-  //     list.push({
-  //       "id": i,
-  //       "name": years,
-  //     })
-  //   }
-  // }
   
   export const SORT_YEARS = [
     {
+      "id": 0,
+      "name": "-"
+    }, 
+    {
       "id": 1,
-      "name": 1990
+      "name": 2017
+    }, 
+    {
+      "id": 2,
+      "name": 2018
+    }, 
+    {
+      "id": 3,
+      "name": 2019
+    }, 
+    {
+      "id": 4,
+      "name": 2020
     }, 
   ]
 
