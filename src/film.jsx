@@ -6,6 +6,7 @@ export function Films({list, firstFilmNumber}){
     const firstFilmNumbers = firstFilmNumber    
     const full_list = list;
     const film_cards = full_list.map((item, index)=>{
+        
     if (index >= firstFilmNumbers && index <= firstFilmNumbers+AMOUNT_OF_CARDS-1){
        return <FilmCard key = {item.id} item = {item}/>
     }

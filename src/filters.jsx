@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {CHECKBOX_LIST,FILM_CARDS} from './mocs'
 import {SORT_TYPES, SORT_YEARS,AMOUNT_OF_CARDS} from './consts'
 
-export function Filters({firstFilmNumber, setFirstFilmNumber,currentFilmList,setCurrentFilmList}){
+export function Filters({firstFilmNumber, setFirstFilmNumber,currentFilmList,setCurrentFilmList,
+   filters, setFilters, filteredFilmList, setfilteredFilmList}){
+  const [filtersState, setFiltersState] = useState([...CHECKBOX_LIST])
+
   function nextPage(){
     if (firstFilmNumber < FILM_CARDS.length - AMOUNT_OF_CARDS) {
       setFirstFilmNumber (firstFilmNumber+AMOUNT_OF_CARDS); 
@@ -16,26 +19,29 @@ return
 return
   }
 
-
-
-
-
-
     return (
       <div className = "filters">
         <h1>Фильтры:</h1>
-      <button className = "clear_filters">Cбросить все фильтры</button> 
+      <button className = "clear_filters" onClick = {()=>{setFiltersState([...CHECKBOX_LIST]);
+      const currentFilters = new Set(filters);
+      setFilters(currentFilters.clear());
+      changeFilteredList(currentFilmList, filters)}}>Cбросить все фильтры</button> 
       <Selector sort = "Сортировать по:" options = {SORT_TYPES}
       currentFilmList={currentFilmList}
       setCurrentFilmList={setCurrentFilmList}
       />
       <Selector sort = "Год релиза:" options = {SORT_YEARS}
        setCurrentFilmList={setCurrentFilmList}/>
-      <CheckboxList box = {CHECKBOX_LIST} />
+      <CheckboxList box = {filtersState} 
+      filters = {filters} 
+      setFilters = {setFilters}
+      currentFilmList={currentFilmList}
+      filteredFilmList = {filteredFilmList}
+      setfilteredFilmList = {setfilteredFilmList}/>
       <div className = "navigation"> 
       <button onClick={()=>previouPage()}>Назад</button>
       <button onClick={()=>nextPage()}>Вперед</button>
-      <p>{firstFilmNumber/AMOUNT_OF_CARDS+1} из {Math.ceil(FILM_CARDS.length/AMOUNT_OF_CARDS)}</p></div>
+      <p>{firstFilmNumber/AMOUNT_OF_CARDS+1} из {Math.ceil(filteredFilmList.length/AMOUNT_OF_CARDS)}</p></div>
       
       </div>
     )
@@ -62,7 +68,8 @@ return
     if (a.vote_average < b.vote_average) return 1;
   }
 
-function Selector({sort, options,currentFilmList,setCurrentFilmList}){
+function Selector({sort, options,currentFilmList,
+  setCurrentFilmList}){
   function filters(value){
     switch (value){
       case "Популярные по убыванию":
@@ -105,15 +112,42 @@ function Selector({sort, options,currentFilmList,setCurrentFilmList}){
     return list
   }
 
-  function CheckboxList ({box}){
+
+  function checkFilters(film, filteres){
+    if (filteres.size=== 0) return true
+    const filmFiltersLength = film.genre_ids.length;
+    const filtersSet = new Set(film.genre_ids);
+    for (let item of filteres) filtersSet.add(item);
+    return (filmFiltersLength == filtersSet.size)
+}
+
+function changeFilteredList(currentFilmList, filters){
+  const newFilmList = [];
+  for (let film of currentFilmList){
+    if (checkFilters(film, filters))
+    newFilmList.push(film)
+  }
+  return newFilmList
+}
+
+
+  function CheckboxList ({box, filters, setFilters, 
+    setfilteredFilmList, currentFilmList}){
     const checkboxList = box;
     const list = checkboxList.map((item)=>{
-    return <>
-    <label key = {item.id} id={item.id}>
-      <input type="checkbox"/>
+    return <label key = {item.id} id={item.id}>
+      <input type="checkbox" onChange={()=>{
+        const currentFilters = new Set(filters);
+        setfilteredFilmList(changeFilteredList(currentFilmList, filters))
+        // console.log(currentFilters);
+         if (currentFilters.has(item.id))  {currentFilters.delete(item.id);                             
+                                     } else (currentFilters.add(item.id));
+          setFilters(currentFilters);
+          setfilteredFilmList(changeFilteredList(currentFilmList, filters))
+      }}/>
            {` `+item.name}
     </label>
-    </>
+    
     })
     return <form>
       {list}
