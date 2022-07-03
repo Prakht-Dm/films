@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import {CHECKBOX_LIST,FILM_CARDS} from './mocs'
 import {SORT_TYPES, SORT_YEARS,AMOUNT_OF_CARDS} from './consts'
+import { useSelector, useDispatch } from 'react-redux';
 
-export function Filters({firstFilmNumber, setFirstFilmNumber,currentFilmList,setCurrentFilmList,
+export function Filters({currentFilmList,setCurrentFilmList,
    filters, setFilters, filteredFilmList, setfilteredFilmList}){
   const [filtersState, setFiltersState] = useState([...CHECKBOX_LIST])
 
-  function nextPage(){
-    if (firstFilmNumber < FILM_CARDS.length - AMOUNT_OF_CARDS) {
-      setFirstFilmNumber (firstFilmNumber+AMOUNT_OF_CARDS); 
+  const firstFilmNumbers  = useSelector(state=>state.firstFilmNumber); 
+  const dispatch = useDispatch();
+  const nextPageStore = () =>{
+    if (firstFilmNumbers < FILM_CARDS.length - AMOUNT_OF_CARDS){
+  dispatch({type: "nextPage"})
     }
-return
+ }
+ const previousPageStore = () =>{
+  if (firstFilmNumbers >= AMOUNT_OF_CARDS) {
+  dispatch({type: "previousPage"})
   }
-  function  previouPage(){
-    if (firstFilmNumber >= AMOUNT_OF_CARDS) {
-      setFirstFilmNumber (firstFilmNumber-AMOUNT_OF_CARDS); 
-    }
-return
-  }
+ }
 
     return (
       <div className = "filters">
@@ -39,9 +40,9 @@ return
       filteredFilmList = {filteredFilmList}
       setfilteredFilmList = {setfilteredFilmList}/>
       <div className = "navigation"> 
-      <button onClick={()=>previouPage()}>Назад</button>
-      <button onClick={()=>nextPage()}>Вперед</button>
-      <p>{firstFilmNumber/AMOUNT_OF_CARDS+1} из {Math.ceil(filteredFilmList.length/AMOUNT_OF_CARDS)}</p></div>
+      <button onClick={()=>previousPageStore()}>Назад</button>
+      <button onClick={()=>{nextPageStore()}}>Вперед</button>
+      <p>{firstFilmNumbers/AMOUNT_OF_CARDS+1} из {Math.ceil(filteredFilmList.length/AMOUNT_OF_CARDS)}</p></div>
       
       </div>
     )

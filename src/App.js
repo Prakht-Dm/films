@@ -7,21 +7,19 @@ import {Films} from './film'
 import {Filters} from './filters'
 
 function App() {
-  const [firstFilmNumber, setFirstFilmNumber] = useState(0);
+  // const [firstFilmNumber, setFirstFilmNumber] = useState(0);
   const [currentFilmList, setCurrentFilmList] = useState([...FILM_CARDS]);
   const [filteredFilmList, setfilteredFilmList] = useState([...currentFilmList]);
   const [filters, setFilters] = useState(new Set());
 
-//   const dispatch = useDispatch();
-//   const listF = useSelector(state=>state.currentFilmList);
-// console.log(listF);
+  const dispatch = useDispatch();
+  const listF = useSelector(state=>state.firstFilmNumber);
+console.log(listF);
   return (
  <>
 <Header/>
 <div className = "main">
 <div><Filters 
-firstFilmNumber = {firstFilmNumber}
- setFirstFilmNumber = {setFirstFilmNumber}
  currentFilmList= {currentFilmList} 
  setCurrentFilmList={setCurrentFilmList}
  filters = {filters} 
@@ -32,7 +30,6 @@ firstFilmNumber = {firstFilmNumber}
 <div className = "films">
 <Films 
 list = {filteredFilmList} 
-firstFilmNumber = {firstFilmNumber}
 filters = {filters} 
 /></div>
 </div>

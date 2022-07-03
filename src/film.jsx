@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { useDispatch, useSelector } from 'react-redux';
 import {AMOUNT_OF_CARDS} from './consts'
 
-export function Films({list, firstFilmNumber}){
-    const firstFilmNumbers = firstFilmNumber    
+export function Films({list}){
+    const firstFilmNumbers  = useSelector(state=>state.firstFilmNumber);    
     const full_list = list;
     const film_cards = full_list.map((item, index)=>{
         
