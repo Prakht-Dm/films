@@ -1,37 +1,29 @@
 import './App.css';
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import {FILM_CARDS} from './mocs'
 import {Films} from './film'
 import {Filters} from './filters'
 
 function App() {
-  // const [firstFilmNumber, setFirstFilmNumber] = useState(0);
-  const [currentFilmList, setCurrentFilmList] = useState([...FILM_CARDS]);
-  const [filteredFilmList, setfilteredFilmList] = useState([...currentFilmList]);
-  const [filters, setFilters] = useState(new Set());
-
-  const dispatch = useDispatch();
-  const listF = useSelector(state=>state.firstFilmNumber);
-console.log(listF);
+  const [allFilters, setAllFilters] = useState({
+    firstFilmNumber: 0,
+    category: "Популярные по убыванию",
+    year: "-",
+    genre: new Set(),
+    length: FILM_CARDS.length,
+  });
   return (
  <>
 <Header/>
 <div className = "main">
 <div><Filters 
- currentFilmList= {currentFilmList} 
- setCurrentFilmList={setCurrentFilmList}
- filters = {filters} 
- setFilters = {setFilters}
- filteredFilmList = {filteredFilmList}
- setfilteredFilmList = {setfilteredFilmList}
- /></div>
-<div className = "films">
-<Films 
-list = {filteredFilmList} 
-filters = {filters} 
-/></div>
+ allFilters = {allFilters}
+ setAllFilters = {setAllFilters}/></div>
+<div className = "films"><Films list = {FILM_CARDS} 
+allFilters = {allFilters}
+setAllFilters = {setAllFilters}/></div>
 </div>
  </>
   );
@@ -47,3 +39,19 @@ function Header(){
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

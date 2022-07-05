@@ -1,4 +1,4 @@
-export const CHECKBOX_LIST = [
+export let CHECKBOX_LIST = [
     {
       "id": 28,
       "name": "боевик"
