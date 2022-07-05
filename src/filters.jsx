@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {CHECKBOX_LIST,FILM_CARDS} from './mocs'
 import {SORT_TYPES, SORT_YEARS,AMOUNT_OF_CARDS} from './consts'
 import { useSelector, useDispatch } from 'react-redux';
+import {popularityUp, popularityDown, vote_averageDown, vote_averageUp,
+checkFilters, changeFilteredList} from './filters-utils'
 
 export function Filters({currentFilmList,setCurrentFilmList,
    filters, setFilters, filteredFilmList, setfilteredFilmList}){
@@ -12,7 +14,7 @@ export function Filters({currentFilmList,setCurrentFilmList,
   const nextPageStore = () =>{
     if (firstFilmNumbers < FILM_CARDS.length - AMOUNT_OF_CARDS){
   dispatch({type: "nextPage"})
-    }
+    }  
  }
  const previousPageStore = () =>{
   if (firstFilmNumbers >= AMOUNT_OF_CARDS) {
@@ -24,7 +26,7 @@ export function Filters({currentFilmList,setCurrentFilmList,
       <div className = "filters">
         <h1>Фильтры:</h1>
       <button className = "clear_filters" onClick = {()=>{setFiltersState([...CHECKBOX_LIST]);
-      const currentFilters = new Set(filters);
+      setCurrentFilters = new Set(filters);
       setFilters(currentFilters.clear());
       changeFilteredList(currentFilmList, filters)}}>Cбросить все фильтры</button> 
       <Selector sort = "Сортировать по:" options = {SORT_TYPES}
@@ -46,27 +48,6 @@ export function Filters({currentFilmList,setCurrentFilmList,
       
       </div>
     )
-  }
-
-  function popularityUp(a, b) {
-    if (a.popularity > b.popularity) return -1;
-    if (a.popularity == b.popularity) return 0;
-    if (a.popularity < b.popularity) return 1;
-  }
-  function popularityDown(a, b) {
-    if (a.popularity > b.popularity) return 1;
-    if (a.popularity == b.popularity) return 0;
-    if (a.popularity < b.popularity) return -1;
-  }
-  function  vote_averageUp(a, b) {
-    if (a.vote_average > b.vote_average) return 1;
-    if (a.vote_average == b.vote_average) return 0;
-    if (a.vote_average < b.vote_average) return -1;
-  }
-  function vote_averageDown(a, b) {
-    if (a.vote_average > b.vote_average) return -1;
-    if (a.vote_average == b.vote_average) return 0;
-    if (a.vote_average < b.vote_average) return 1;
   }
 
 function Selector({sort, options,currentFilmList,
@@ -102,9 +83,6 @@ function Selector({sort, options,currentFilmList,
     )
   }
   
-
-
-
   function Selectors({options}){
     const selectorsList = options;
     const list = selectorsList.map((item)=>{
@@ -112,25 +90,6 @@ function Selector({sort, options,currentFilmList,
     })
     return list
   }
-
-
-  function checkFilters(film, filteres){
-    if (filteres.size=== 0) return true
-    const filmFiltersLength = film.genre_ids.length;
-    const filtersSet = new Set(film.genre_ids);
-    for (let item of filteres) filtersSet.add(item);
-    return (filmFiltersLength == filtersSet.size)
-}
-
-function changeFilteredList(currentFilmList, filters){
-  const newFilmList = [];
-  for (let film of currentFilmList){
-    if (checkFilters(film, filters))
-    newFilmList.push(film)
-  }
-  return newFilmList
-}
-
 
   function CheckboxList ({box, filters, setFilters, 
     setfilteredFilmList, currentFilmList}){
