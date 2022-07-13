@@ -31,6 +31,38 @@ $textColor: rgb(43,	54,	59);
         flex-wrap: wrap;
     }
 }
+.avatar-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 150px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 20px 15px; 
+    img{
+        width: 100%;
+    } 
+}
+.login-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 150px;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px 15px;
+    input{
+        height: 2em;
+    }
+    button{
+        background-color: rgb(38,	154,	54	);
+        padding: 3px;
+        color: white;
+        border-radius: 5px;   
+    }
+}
   .filters{
       box-shadow: 2px 2px 5px rgb(129, 125, 125);
       width: 240px;

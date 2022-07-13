@@ -3,7 +3,8 @@ import {CHECKBOX_LIST,FILM_CARDS} from './mocs'
 import {SORT_TYPES, SORT_YEARS,AMOUNT_OF_CARDS} from './consts'
 
 export function Filters({allFilters, setAllFilters}){
-  const [filters, setFilters] = useState([...CHECKBOX_LIST])
+  const [filters, setFilters] = useState([...CHECKBOX_LIST]);
+  
   const firstItem = allFilters.firstFilmNumber;
   function nextPage(){
     if (firstItem  < FILM_CARDS.length - AMOUNT_OF_CARDS) {
@@ -13,7 +14,8 @@ return
   }
   function  previouPage(){
     if (firstItem  >= AMOUNT_OF_CARDS) {
-      setAllFilters ({... allFilters, firstFilmNumber: firstItem - AMOUNT_OF_CARDS}); 
+      setAllFilters ({... allFilters ,length: 0}); 
+      // setAllFilters ({... allFilters, firstFilmNumber: firstItem - AMOUNT_OF_CARDS, length: 0}); 
     }
 return
   }

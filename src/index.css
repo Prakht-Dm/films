@@ -98,6 +98,57 @@ nobr {
       flex-wrap: wrap;
 }
 
+.avatar-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 200px;
+  height: 150px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 20px 15px;
+}
+
+.avatar-page img {
+  width: 100%;
+}
+
+.login-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 200px;
+  height: 150px;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px 15px;
+}
+
+.login-page input {
+  height: 2em;
+}
+
+.login-page button {
+  background-color: #269a36;
+  padding: 3px;
+  color: white;
+  border-radius: 5px;
+}
+
 .filters {
   -webkit-box-shadow: 2px 2px 5px #817d7d;
           box-shadow: 2px 2px 5px #817d7d;
