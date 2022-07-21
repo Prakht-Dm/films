@@ -117,7 +117,7 @@ nobr {
 }
 
 .avatar-page img {
-  width: 100%;
+  width: 70%;
 }
 
 .login-page {
@@ -253,10 +253,16 @@ header button {
 
 .film_card button {
   width: 20px;
+  height: 20px;
   border: none;
   background-color: white;
   position: relative;
   right: -200px;
+  top: -19px;
+}
+
+.film_card button:hover {
+  color: red;
 }
 
 .film_card button:last-of-type {
@@ -264,8 +270,8 @@ header button {
   border: none;
   background-color: white;
   position: relative;
-  right: -230px;
-  top: -28px;
+  right: -225px;
+  top: -37px;
 }
 
 .film_card p {

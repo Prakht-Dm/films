@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {CHECKBOX_LIST,FILM_CARDS} from './mocs'
-import {SORT_TYPES, SORT_YEARS,AMOUNT_OF_CARDS} from './consts'
+import {SORT_TYPES, SORT_YEARS, SORT_SAVED ,AMOUNT_OF_CARDS} from './consts'
 
 export function Filters({allFilters, setAllFilters}){
   const [filters, setFilters] = useState([...CHECKBOX_LIST]);
@@ -10,15 +10,13 @@ export function Filters({allFilters, setAllFilters}){
     if (firstItem  < FILM_CARDS.length - AMOUNT_OF_CARDS) {
       setAllFilters ({...allFilters, firstFilmNumber: firstItem + AMOUNT_OF_CARDS}); 
     }
-return
   }
   function  previouPage(){
     if (firstItem  >= AMOUNT_OF_CARDS) {
-      setAllFilters ({... allFilters ,length: 0}); 
-      // setAllFilters ({... allFilters, firstFilmNumber: firstItem - AMOUNT_OF_CARDS, length: 0}); 
+      setAllFilters ({... allFilters, firstFilmNumber: firstItem - AMOUNT_OF_CARDS}); 
     }
-return
   }
+
     return (
       <div className = "filters">
         <h1>Фильтры:</h1>
@@ -38,6 +36,9 @@ return
       <Selector sort = "Год релиза:" options = {SORT_YEARS}
       allFilters = {allFilters}
       setAllFilters = {setAllFilters}/>
+      {!allFilters.isLoggined || <Selector sort = "" options = {SORT_SAVED}
+      allFilters = {allFilters}
+      setAllFilters = {setAllFilters}/>}
       <CheckboxList box = {filters}
       allFilters = {allFilters}
       setAllFilters = {setAllFilters} />

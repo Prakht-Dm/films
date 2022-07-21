@@ -40,4 +40,21 @@ export const SORT_YEARS = [
   }, 
 ]
 
+export const SORT_SAVED = [
+  {
+    "id": 0,
+    "name": "-"
+  }, 
+  {
+    "id": 1,
+    "name": "Смотреть позже"
+  }, 
+  {
+    "id": 2,
+    "name": "Сохранённые"
+  },
+
+]
+
+
 export const AMOUNT_OF_CARDS = 10;

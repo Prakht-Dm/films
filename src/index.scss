@@ -41,7 +41,7 @@ $textColor: rgb(43,	54,	59);
     padding: 5px;
     margin: 20px 15px; 
     img{
-        width: 100%;
+        width: 70%;
     } 
 }
 .login-page{
@@ -143,18 +143,25 @@ header {
     display: flex;
    button{
        width: 20px;
+       height: 20px;
        border: none;
        background-color: white;
        position: relative;  
        right: -200px;
+       top: -19px 
+      
    } 
+   button:hover{
+    color: red;
+   }
+
    button:last-of-type{
     width: 20px;
     border: none;
     background-color: white;
     position: relative;  
-    right: -230px;
-    top: -28px    
+    right: -225px;
+    top: -37px    
    }
    p{
     position: relative;

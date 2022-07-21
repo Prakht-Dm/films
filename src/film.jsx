@@ -28,22 +28,25 @@ export function Films({ list, allFilters, setAllFilters }) {
     return dateN == allFilters.year || allFilters.year === "-";
   });
 
-  const film_cards = newCurrentFilmList.map((item, index) => {
+  const filmCardsList = newCurrentFilmList.map((item, index) => {
     if (
       index >= firstFilmNumbers &&
       index <= firstFilmNumbers + AMOUNT_OF_CARDS - 1
     ) {
-      return <FilmCard key={index} item={item} />;
+      return <FilmCard
+      key = {index}
+      item = {item}
+      isLoggined = {allFilters.isLoggined} />;
     }
     return false;
   });
 
   console.log(allFilters);
   console.log(newCurrentFilmList);
-  return film_cards;
+  return filmCardsList;
 }
 
-function FilmCard({ item }) {
+function FilmCard({ item, isLoggined }) {
   const imagePath = item.poster_path || item.backdrop_path;
   const src = `https://image.tmdb.org/t/p/w500/${imagePath}`;
   return (
@@ -51,8 +54,18 @@ function FilmCard({ item }) {
       <img alt="Poster" src={src} />
       <div>
         <div>
-          <button>✩</button>
-          <button>☐\☑\☒</button>
+          <button onClick={()=>{if (isLoggined)
+            changeFavoritesOrWatchLaterList("favorites", item.id)
+           else
+          alert("Необходимо зарегестрироваться")
+        }
+        }>{(isFilmInStorage("favorites", item.id, "★", "☆", isLoggined))}</button>
+          <button onClick={()=>{if (isLoggined)
+            changeFavoritesOrWatchLaterList("watchLater", item.id)
+           else
+          alert("Необходимо зарегестрироваться")
+        }
+      }>{(isFilmInStorage("watchLater", item.id, "⚑", "☭", isLoggined ))}</button>
           <p>Рейтинг: {item.vote_average}</p>
           <p>{item.title}</p>
         </div>
@@ -61,6 +74,29 @@ function FilmCard({ item }) {
     </div>
   );
 }
+
+export function changeFavoritesOrWatchLaterList(type, item){
+    const list = localStorage[`${type}`];
+    let listSet = new Set([item])
+    if (list){
+    listSet = new Set(list.split(" "))
+    if (listSet.has(`${item}`)) listSet.delete(`${item}`)
+  else listSet.add(`${item}`)
+  
+    }
+    console.log((listSet));
+  localStorage[`${type}`] = Array.from(listSet).join(' ')
+}
+
+export function isFilmInStorage(type, item, sibolTrue, simbolFalse, isLoggined ){
+  const list = localStorage[`${type}`];
+  if (list){
+  const listSet = new Set(list.split(" "))
+  return (listSet.has(`${item}`) && isLoggined) ? sibolTrue : simbolFalse;
+}
+return simbolFalse;
+}
+
 
 export function popularityUp(a, b) {
   if (a.popularity > b.popularity) return -1;

@@ -1,7 +1,7 @@
 import "./App.css";
 
 import React, { useState } from "react";
-
+import Cookies from 'js-cookie'
 import { FILM_CARDS } from "./mocs";
 import { Films } from "./film";
 import { Filters } from "./filters";
@@ -13,8 +13,8 @@ function App() {
     year: "-",
     genre: new Set(),
     length: FILM_CARDS.length,
-    isLoginPageVivsible: false,
-    isLoggined: false,
+    isLoginPageVivsible: (Cookies.get("login") && Cookies.get("password")),
+    isLoggined: (Cookies.get("login") && Cookies.get("password")),
   });
   return (
     <>
@@ -44,6 +44,8 @@ function Header({ allFilters, setAllFilters }) {
         <button
           onClick={() => {
             setAllFilters({ ...allFilters, isLoggined: false });
+            Cookies.remove("login");
+            Cookies.remove("password");
           }}
         >
           Logout
@@ -69,28 +71,33 @@ function Header({ allFilters, setAllFilters }) {
 
 function LoginPage({ allFilters, setAllFilters }) {
   const [loginInfo, setLoginInfo] = useState({
-    login: "",
-    password: "",
+    login: "" || Cookies.get("login"),
+    password: "" || Cookies.get("password"),
   });
+  
   if (!allFilters.isLoginPageVivsible) return;
   if (allFilters.isLoggined)
     return (
       <div className="avatar-page">
-        <img src="..Propject/movie/public/admin.jpeg" alt="avatar"></img>
-        <p>Admin</p>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHavAqEKhY8MRX7NntKRnkGqFTk42uJT_TuA&usqp=CAU' alt="avatar"></img>
+        <p>Hi, this is test of autorization</p>
       </div>
     );
   return (
     <form
       className="login-page"
       onSubmit={() => {
-        if (loginInfo.login === "Admin" && loginInfo.password === "admin")
+        if (loginInfo.login === "Admin" && loginInfo.password === "admin"){
           setAllFilters({ ...allFilters, isLoggined: true });
+          Cookies.set("login", "Admin");
+          Cookies.set("password", "admin");
+        }
         setLoginInfo({
           login: "",
           password: "",
         });
-      }}
+
+        }}
     >
       <input
         type="text"
